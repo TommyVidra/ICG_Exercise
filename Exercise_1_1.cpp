@@ -41,11 +41,12 @@ void matrixF() {
 		2, 1, 3,
 		4, 5, 1);
 
-	mat3x3 M2 = M2_1 * transpose(M2_1);
-
-	mat3x3 M3 = M2_1 * inverse(tempM);
+	mat3x3 M2 = transpose(tempM) * M2_1;
+	mat3x3 M3 = inverse(tempM) * M2_1;
 
 	cout << to_string(M1) << endl;
+	cout << to_string(M2) << endl;
+	cout << to_string(M3) << endl;
 }
 
 void equationF() {
@@ -105,6 +106,7 @@ void triangleF() {
 
 int main() {
 
+	
 	vectorF();
 	matrixF();
 	equationF();
