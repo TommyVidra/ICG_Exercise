@@ -38,43 +38,132 @@ void drawLine(int x1, int y1, int x2, int y2) {
 	glEnd();
 }
 
-//Bresenham Line Algorithm
-void myLine(float x1, float x2, float y1, float y2) {
+
+//function for 0 to 90 degrees
+void LinePositive(float x1, float x2, float y1, float y2) {
 
 	float dx, d, endX, endY, startX, startY, D;
 
-	dx = -2 * (x2 - x1);
-	d = -(x2 - x1);
-	D = 2 * (y2 - y1);
+	startX = x1;
+	startY = y1;
+	endX = x2;
+	endY = y2;
 
-	if (x1 > x2) {
+	if (endY > endX) {
 
-		startX = x2;
-		startY = y2;
-		endX = x1;
-		endY = y1;
+		float temp = endX;
+		endX = endY;
+		endY = temp;
+
+		temp = startX;
+		startX = startY;
+		startY = temp;
+
+		dx = -2 * (endX - startX);
+		d = -(endX - startX);
+		D = 2 * (endY - startY);
+
+		for (float i = startX; i < endX; ++i) {
+
+			draw(startY, i);
+			d += D;
+
+			if (d >= 0) {
+				d = d + dx;
+				startY += 1;
+			}
+		}
 	}
 
 	else {
 
-		startX = x1;
-		startY = y1;
-		endX = x2;
-		endY = y2;
-	}
+		dx = -2 * (endX - startX);
+		d = -(endX - startX);
+		D = 2 * (endY - startY);
+		for (float i = startX; i < endX; ++i) {
 
-	for (float i = startX; i < endX; ++i) {
+			draw(i, startY);
+			d += D;
 
-		draw(i, startY);
-		d += D;
-
-		if (d >= 0) {
-			d = d + dx;
-			startY += 1;
+			if (d >= 0) {
+				d = d + dx;
+				startY += 1;
+			}
 		}
+	}
+}
 
+//function for 0 to -90 degrees
+void LineNegative(float x1, float x2, float y1, float y2) {
+
+	float dx, d, endX, endY, startX, startY, D;
+
+	startX = x1;
+	startY = y1;
+	endX = x2;
+	endY = y2;
+
+	if (-(endY - startY) > endX - startX) {
+
+		float temp = endX;
+		endX = startY;
+		startY = temp;
+
+		temp = startX;
+		startX = endY;
+		endY = temp;
+
+		dx = 2 * (endX - startX);
+		d = (endX - startX);
+		D = 2 * (endY - startY);
+
+		for (float i = startX; i < endX; ++i) {
+
+			draw(startY, i);
+			d += D;
+
+			if (d <= 0) {
+				d = d + dx;
+				startY -= 1;
+			}
+		}
 	}
 
+	else {
+
+		dx = 2 * (endX - startX);
+		d = (endX - startX);
+		D = 2 * (endY - startY);
+		for (float i = startX; i < endX; ++i) {
+
+			draw(i, startY);
+			d += D;
+
+			if (d <= 0) {
+				d = d + dx;
+				startY -= 1;
+			}
+		}
+	}
+}
+
+
+//function that calls Bresenham Line Algorithm methods, depending on the quadrant in the
+//coordinate system
+void myLine(float x1, float x2, float y1, float y2) {
+
+	if (x1 < x2) {
+		if (y1 < y2)
+			LinePositive(x1, x2, y1, y2);
+		else
+			LineNegative(x1, x2, y1, y2);
+	}
+	else {
+		if (y1 > y2)
+			LinePositive(x2, x1, y2, y1);
+		else
+			LineNegative(x2, x1, y2, y1);
+	}
 }
 
 void Display() {
