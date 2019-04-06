@@ -58,20 +58,20 @@ int width = 400, height = 400;
 
 void myReshape(int w, int h)
 {
-	//printf("Pozvan myReshape()\n");
-	width = w; height = h;               //promjena sirine i visine prozora	
-	glViewport(0, 0, width, height);	//  otvor u prozoru
 
-	glMatrixMode(GL_PROJECTION);		//	matrica projekcije
-	glLoadIdentity();					//	jedinicna matrica
-	gluOrtho2D(0, width, 0, height); 	//	okomita projekcija
-	glMatrixMode(GL_MODELVIEW);			//	matrica pogleda
-	glLoadIdentity();					//	jedinicna matrica
+	width = w; height = h;               
+	glViewport(0, 0, width, height);	
 
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // boja pozadine
-	glClear(GL_COLOR_BUFFER_BIT);		//	brisanje pozadine
-	glPointSize(1.0);					//	postavi velicinu tocke za liniju
-	glColor3f(0.0f, 0.0f, 0.0f);		//	postavi boju linije
+	glMatrixMode(GL_PROJECTION);		
+	glLoadIdentity();					
+	gluOrtho2D(0, width, 0, height); 	
+	glMatrixMode(GL_MODELVIEW);			
+	glLoadIdentity();					
+
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f); 
+	glClear(GL_COLOR_BUFFER_BIT);		
+	glPointSize(1.0);					
+	glColor3f(0.0f, 0.0f, 0.0f);		
 }
 
 void myDisplay()
