@@ -57,6 +57,7 @@ bool pomakGore = false;
 bool pomakDole = false;
 bool colorMode = false;
 bool konveksno = false;
+//bool triang = false;
 
 vector<string> split(const string& s, char delimiter) {
 
@@ -137,6 +138,54 @@ void drawPoly() {
 		glFlush();
 	}
 }
+
+//void drawPoly() {
+//
+//	for (int i = 0; i < polygons.size(); ++i) {
+//
+//		if (triang) {
+//			if (colorMode) {
+//				glColor3f(polygons.at(i).V.at(0).x + 0.2, polygons.at(i).V.at(0).y + 0.2, polygons.at(i).V.at(0).z + 0.2);
+//
+//			}
+//			if (pomakGore) {
+//
+//				drawTriangle(polygons.at(i).V.at(0).x * coef + dX, polygons.at(i).V.at(1).x * coef + dX, polygons.at(i).V.at(2).x * coef + dX, polygons.at(i).V.at(0).y * coef + dY + 300, polygons.at(i).V.at(1).y * coef + dY + 300, polygons.at(i).V.at(2).y * coef + dY + 300);
+//			}
+//			if (pomakDole)
+//			{
+//				drawTriangle(polygons.at(i).V.at(0).x * coef + dX, polygons.at(i).V.at(1).x * coef + dX, polygons.at(i).V.at(2).x * coef + dX, polygons.at(i).V.at(0).y * coef + dY - 300, polygons.at(i).V.at(1).y * coef + dY - 300, polygons.at(i).V.at(2).y * coef + dY - 300);
+//			}
+//			else if (!pomakDole && !pomakGore)
+//				drawTriangle(polygons.at(i).V.at(0).x * coef + dX, polygons.at(i).V.at(1).x * coef + dX, polygons.at(i).V.at(2).x * coef + dX, polygons.at(i).V.at(0).y * coef + dY, polygons.at(i).V.at(1).y * coef + dY, polygons.at(i).V.at(2).y * coef + dY);
+//			glFlush();
+//
+//		}
+//		else{
+//			int last = 2;
+//			for (int j = 0; j < 3; j++) {
+//
+//				if (colorMode) {
+//					glColor3f(polygons.at(i).V.at(j).x + 0.2, polygons.at(i).V.at(j).y + 0.2, polygons.at(i).V.at(j).z + 0.2);
+//
+//				}
+//				if (pomakGore) {
+//					myLine(polygons.at(i).V.at(last).x * coef + dX, polygons.at(i).V.at(j).x * coef + dX, polygons.at(i).V.at(last).y * coef + dY + 300, polygons.at(i).V.at(j).y * coef + dY + 300);
+//				}
+//				if (pomakDole)
+//				{
+//					myLine(polygons.at(i).V.at(last).x * coef + dX, polygons.at(i).V.at(j).x * coef + dX, polygons.at(i).V.at(last).y * coef + dY - 300, polygons.at(i).V.at(j).y * coef + dY - 300);
+//				}
+//				else if(!pomakDole && !pomakGore)
+//					myLine(polygons.at(i).V.at(last).x * coef + dX, polygons.at(i).V.at(j).x * coef + dX, polygons.at(i).V.at(last).y * coef + dY, polygons.at(i).V.at(j).y * coef + dY);
+//
+//				last = j;
+//			}
+//			glFlush();
+//		}
+//		
+//	}
+//}
 
 //calculates coefficients of polygons which will later be used for seeing if a point is contained in an object
 void koefCalc() {
@@ -230,7 +279,16 @@ int main(int argc, char *argv[]) {
 	cout << "Color mode? y , n" << endl;
 	char d;
 	cin >> d;
+	
+	////selects method of drawing
+	//cout << "Line or triang? l, t" << endl;
+	//char o;
+	//cin >> o;
 
+	//if (o == 't') {
+	//	triang = true;
+	//}
+	
 	if (d = 'y')
 		colorMode = true;
 
