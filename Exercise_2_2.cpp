@@ -24,12 +24,6 @@ public:
 		y = y1;
 		z = z1;
 	}
-
-	/*void setX(int x1) { x = x1; }
-	void setY(int y1) { y = y1; }
-	int getX() { return x; }
-	int getY() { return y; }
-*/
 };
 
 //class that reprisents an polygon
