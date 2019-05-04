@@ -181,7 +181,7 @@ void myPoly() {
 
 	j = v.size() - 1;
 
-	//Tests if the polygon is convex
+	//Tests if the polygon points are given clockwise
 	for (int i = 0; i < v.size(); ++i) {
 
 		vec3 vek = cross(vec3(v.at(j).getX(), v.at(j).getY(), 0), vec3(v.at(i).getX(), v.at(i).getY(), 0));
@@ -189,12 +189,12 @@ void myPoly() {
 
 		if (dot(vek, V) > 0) {
 			kriviRedosljed = true;
-			cout << "Nije konveksan" << endl;
+			cout << "Nije u smjeru kazaljke na sat" << endl;
 			break;
 		}
 	}
 
-	//switches the polygon to convex if it isn't
+	//switches the polygon to clockwise order if it isn't
 	if (kriviRedosljed) {
 		vector<Tocka> temp;
 		temp.clear();
